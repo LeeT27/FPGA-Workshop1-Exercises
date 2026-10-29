@@ -9,8 +9,8 @@ module control_unit (
     logic [1:0] next_s;
 
     always_comb begin
-        next_s[1] = (s[1] & ~btn[1]) | (s[0] & btn[1]);
-        next_s[0] = (s[1] & s[0]) | (~s[0] & btn[0]) | (s[0] & ~btn[1] & ~btn[0]);
+        next_s[1] = (s[1] & s[0]) | (s[1] & ~btn[1]) | (s[0] & btn[1] & ~btn[0]);
+        next_s[0] = (s[1] & s[0]) | (~s[0] & ~btn[1] & btn[0]) | (s[0] & ~btn[1] & ~btn[0]);
     end
 
     always_ff @(posedge clk) begin
